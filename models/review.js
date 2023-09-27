@@ -4,7 +4,7 @@ const sequelize = require('../config/connection');
 class Review extends Model {
   }
 
-
+// Initialize Review model
 Review.init(
   {
     id: {

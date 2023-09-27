@@ -8,6 +8,7 @@ class User extends Model {
   }
 }
 
+// Initialize User model
 User.init(
   {
     id: {
@@ -37,10 +38,22 @@ User.init(
     },
   },
   {
+    // hooks: allow us to run functions before or after certain events
     hooks: {
+      //beforeCreate with newUserData as the parameter allow us to run a function before we create a new user
+      // the function will create a new password for the user
       beforeCreate: async (newUserData) => {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
+      },
+
+      //beforeUpdate with updatedUserData as the parameter allow us to run a function before we update a user
+      // the function will update the password for the user
+      beforeUpdate: async (updatedUserData) => {
+        if (updatedUserData.password) {
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        }
+        return updatedUserData;
       },
     },
     sequelize,
