@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
+// let sequelize; allows us to use JawsDB for Heroku deployment
 let sequelize;
 
 if (process.env.JAWSDB_URL) {
