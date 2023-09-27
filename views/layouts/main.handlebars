@@ -4,22 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CBDB</title>
+  <title>Coding Bootcamp DataBase</title>
+   <link rel="stylesheet" type="text/css" href="/css/jass.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
   <header class="display-flex justify-space-between align-center p-2">
     <h1>
-      User Reviews
+      Welcome to Coding Bootcamp DataBase
     </h1>
   </header>
+  <nav>
+    {{#if loggedIn}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}
+  </nav>
   <main class="container container-fluid mt-5">
-    <!-- Render the contents of the body block -->
+    <div><!-- Render the contents of the body block -->
     {{{ body }}}
+    </div>
   </main>
-  <footer>
-      
-  </footer>
+
+{{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+
+  <footer class="display-flex justify-space-between align-center p-2">
+    <p>
+      &copy; 2023 Coding Bootcamp DataBase
+    </p>
 </body>
 
 </html>
