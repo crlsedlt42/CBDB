@@ -1,1 +1,18 @@
 <h1>HOMEPAGE</h1>
+
+
+{{#each reviews as |movie|}}
+
+
+<div>
+    <p>{{movie.movieName}}</p>
+
+    <h2>Review</h2>
+    {{#each movie.Reviews as |review|}}
+    <p>{{review.review_txt}}</p>
+    {{/each}}
+
+
+</div>
+
+{{/each}}

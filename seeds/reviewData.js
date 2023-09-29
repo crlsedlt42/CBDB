@@ -17,8 +17,6 @@ const seedDatabase = async () => {
   // for (const review of reviewData) {
   //   await Review.create({
   //     ...review,
-  //     //Randomly assign a user_id to each review
-  //     user_id: users[Math.floor(Math.random() * users.length)].id,
   //   });
   // }
 
