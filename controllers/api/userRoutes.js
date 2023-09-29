@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const User = require('../../models/User');
+const User = require('../../models/user');
 
 // GET one user
 router.get('/:id', async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id);
 
+    // This line of code will only be needed if the user wants to be logged in after creating an account
     // req.session.save(() => {
     //   req.session.user_id = userData.id;
     //   req.session.logged_in = true;
@@ -92,8 +93,10 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      res.status(204).end();
+       res.status(204).end();
+      // res.redirect('/login');
     });
+    // window.location.replace('/login');
   } else {
     res.status(404).end();
   }
