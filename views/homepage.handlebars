@@ -1,18 +1,72 @@
 <h1>HOMEPAGE</h1>
 
 
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Post a NEW Review:</h3>
+
+    <form class="form new-post-form" id="post">
+      <div class="form-group">
+        <label for="post-title">MOVIE TITLE:</label>
+        <input class="form-input" type="text" id="post-title" name="post-title" />
+      </div>
+      <div class="form-group">
+        <label for="post-content">REVIEW:</label>
+        <textarea class="form-input" id="post-content" name="post-content"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">POST</button>
+      </div>
+    </form>
+  </div>
+
+<div class="col-md-6 project-list">
+    <h3>User Reviews:</h3>
 {{#each reviews as |movie|}}
 
 
 <div>
-    <p>{{movie.movieName}}</p>
+    <h3>{{movie.movieName}}</h3>
 
-    <h2>Review</h2>
-    {{#each movie.Reviews as |review|}}
-    <p>{{review.review_txt}}</p>
+    <p>Review</p>
+    {{#each movie.reviews as |review|}}
+    <h4>{{review.review_txt}}</h4>
     {{/each}}
 
 
 </div>
 
 {{/each}}
+
+<!--I couldn't get my comments to match with my movies without this script-->
+<!--I tried to use a seperate JavaScript file but it didn't work as well as using script in handlebars-->
+
+<script>
+    const postReview = async (event) => {
+    event.preventDefault();
+    const review_txt = document.querySelector('#post-content').value.trim();
+    const movieName = document.querySelector('#post-title').value.trim();
+    const movie_id ={{length}} +1
+    console.log(movie_id)
+
+    if (review_txt) {
+        const response1 = await fetch('/api/movies', {
+            method: 'POST',
+            body: JSON.stringify({ movieName }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const response2 = await fetch('/api/reviews', {
+            method: 'POST',
+            body: JSON.stringify({ review_txt, movie_id } ),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        if (response1.ok && response2.ok) {
+            document.location.replace('/');
+        } else {
+            alert('Failed to post review');
+        }
+    }
+}
+
+document.querySelector('#post').addEventListener('submit', postReview);
+</script>

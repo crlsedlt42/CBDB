@@ -13,12 +13,14 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  // //This is an array of objects, each object is a review
-  // for (const review of reviewData) {
-  //   await Review.create({
-  //     ...review,
-  //   });
-  // }
+  //This is an array of objects, each object is a review
+  for (const review of reviewData) {
+    await Review.create({
+      ...review,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
+      
+    });
+  }
 
   process.exit(0);
 };
