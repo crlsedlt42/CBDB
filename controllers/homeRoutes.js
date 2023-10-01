@@ -18,10 +18,12 @@ router.get('/', async (req, res) => {
 
 
     const reviews = reviewData.map((review) => review.get({ plain: true }));
-
+const length = reviews.length;
+console.log(length);
     console.log(reviews);
 
     res.render('homepage', {
+        length,
         reviews,
         logged_in: req.session.logged_in
     });
@@ -39,7 +41,11 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/login', async (req, res) => {
-    res.render('login', {logged_in: req.session.logged_in});
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
+    res.render('login');
 }); 
 
 module.exports = router;
