@@ -1,4 +1,4 @@
-<h1>HOMEPAGE</h1>
+<h2>HOMEPAGE</h2>
 
 
 <div class="row mt-4">
@@ -21,16 +21,16 @@
   </div>
 
 <div class="col-md-6 project-list">
-    <h3>User Reviews:</h3>
+    <h5>User Reviews:</h5>
 {{#each reviews as |movie|}}
 
 
 <div>
-    <h3>{{movie.movieName}}</h3>
+    <h2 class="movie-title">{{movie.movieName}}</h2>
 
-    <p>Review</p>
+    <p class="comment-section">Review:</p>
     {{#each movie.reviews as |review|}}
-    <h4>{{review.review_txt}}</h4>
+    <h4 class="movieWcomment">{{review.review_txt}}</h4>
     {{/each}}
 
 
