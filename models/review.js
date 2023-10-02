@@ -18,6 +18,7 @@ Review.init(
     review_txt: {
       type: DataTypes.STRING,
       allowNull: false,
+      varchar: 140
     },
     user_id: {
       type: DataTypes.INTEGER,
